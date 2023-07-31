@@ -2,14 +2,14 @@
 
 namespace Sealgram.Models
 {
-    public class likes
+    public class Likes
     {
-        public int like_id { get; set; } // primary key
+        public int LikeId { get; set; } // primary key
 
-        public int user_id { get; set; } // foreign key
+        public int UserId { get; set; } // foreign key
 
-        public int post_id { get; set; } // foreign key
+        public int PostId { get; set; } // foreign key
 
-        public DateAndTime created_at { get; set; } // timestamp
+        public DateTime CreatedAt { get; set; } // timestamp
     }
 }
