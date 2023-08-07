@@ -55,7 +55,7 @@ namespace Sealgram.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutLikes(int id, Likes likes)
         {
-            if (id != likes.likeid)
+            if (id != likes.LikeId)
             {
                 return BadRequest();
             }
@@ -93,7 +93,7 @@ namespace Sealgram.Controllers
             _context.Likes.Add(likes);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetLikes", new { id = likes.likeid }, likes);
+            return CreatedAtAction("GetLikes", new { id = likes.LikeId }, likes);
         }
 
         // DELETE: api/Likes/5
@@ -118,7 +118,7 @@ namespace Sealgram.Controllers
 
         private bool LikesExists(int id)
         {
-            return (_context.Likes?.Any(e => e.likeid == id)).GetValueOrDefault();
+            return (_context.Likes?.Any(e => e.LikeId == id)).GetValueOrDefault();
         }
     }
 }

@@ -12,55 +12,55 @@ namespace Sealgram.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class LikesController : ControllerBase
+    public class UsersController : ControllerBase
     {
         private readonly SealgramDbContext _context;
 
-        public LikesController(SealgramDbContext context)
+        public UsersController(SealgramDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Likes
+        // GET: api/Users
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Likes>>> GetLikes()
+        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
-          if (_context.Likes == null)
+          if (_context.Users == null)
           {
               return NotFound();
           }
-            return await _context.Likes.ToListAsync();
+            return await _context.Users.ToListAsync();
         }
 
-        // GET: api/Likes/5
+        // GET: api/Users/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Likes>> GetLikes(int id)
+        public async Task<ActionResult<User>> GetUser(int id)
         {
-          if (_context.Likes == null)
+          if (_context.Users == null)
           {
               return NotFound();
           }
-            var likes = await _context.Likes.FindAsync(id);
+            var user = await _context.Users.FindAsync(id);
 
-            if (likes == null)
+            if (user == null)
             {
                 return NotFound();
             }
 
-            return likes;
+            return user;
         }
 
-        // PUT: api/Likes/5
+        // PUT: api/Users/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutLikes(int id, Likes likes)
+        public async Task<IActionResult> PutUser(int id, User user)
         {
-            if (id != likes.likeid)
+            if (id != user.UserId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(likes).State = EntityState.Modified;
+            _context.Entry(user).State = EntityState.Modified;
 
             try
             {
@@ -68,7 +68,7 @@ namespace Sealgram.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!LikesExists(id))
+                if (!UserExists(id))
                 {
                     return NotFound();
                 }
@@ -81,44 +81,44 @@ namespace Sealgram.Controllers
             return NoContent();
         }
 
-        // POST: api/Likes
+        // POST: api/Users
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Likes>> PostLikes(Likes likes)
+        public async Task<ActionResult<User>> PostUser(User user)
         {
-          if (_context.Likes == null)
+          if (_context.Users == null)
           {
-              return Problem("Entity set 'SealgramDbContext.Likes'  is null.");
+              return Problem("Entity set 'SealgramDbContext.Users'  is null.");
           }
-            _context.Likes.Add(likes);
+            _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetLikes", new { id = likes.likeid }, likes);
+            return CreatedAtAction("GetUser", new { id = user.UserId }, user);
         }
 
-        // DELETE: api/Likes/5
+        // DELETE: api/Users/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteLikes(int id)
+        public async Task<IActionResult> DeleteUser(int id)
         {
-            if (_context.Likes == null)
+            if (_context.Users == null)
             {
                 return NotFound();
             }
-            var likes = await _context.Likes.FindAsync(id);
-            if (likes == null)
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
             {
                 return NotFound();
             }
 
-            _context.Likes.Remove(likes);
+            _context.Users.Remove(user);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool LikesExists(int id)
+        private bool UserExists(int id)
         {
-            return (_context.Likes?.Any(e => e.likeid == id)).GetValueOrDefault();
+            return (_context.Users?.Any(e => e.UserId == id)).GetValueOrDefault();
         }
     }
 }

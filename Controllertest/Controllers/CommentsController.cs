@@ -12,55 +12,55 @@ namespace Sealgram.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class LikesController : ControllerBase
+    public class CommentsController : ControllerBase
     {
         private readonly SealgramDbContext _context;
 
-        public LikesController(SealgramDbContext context)
+        public CommentsController(SealgramDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Likes
+        // GET: api/Comments
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Likes>>> GetLikes()
+        public async Task<ActionResult<IEnumerable<Comments>>> GetComments()
         {
-          if (_context.Likes == null)
+          if (_context.Comments == null)
           {
               return NotFound();
           }
-            return await _context.Likes.ToListAsync();
+            return await _context.Comments.ToListAsync();
         }
 
-        // GET: api/Likes/5
+        // GET: api/Comments/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Likes>> GetLikes(int id)
+        public async Task<ActionResult<Comments>> GetComments(int? id)
         {
-          if (_context.Likes == null)
+          if (_context.Comments == null)
           {
               return NotFound();
           }
-            var likes = await _context.Likes.FindAsync(id);
+            var comments = await _context.Comments.FindAsync(id);
 
-            if (likes == null)
+            if (comments == null)
             {
                 return NotFound();
             }
 
-            return likes;
+            return comments;
         }
 
-        // PUT: api/Likes/5
+        // PUT: api/Comments/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutLikes(int id, Likes likes)
+        public async Task<IActionResult> PutComments(int? id, Comments comments)
         {
-            if (id != likes.likeid)
+            if (id != comments.CommentId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(likes).State = EntityState.Modified;
+            _context.Entry(comments).State = EntityState.Modified;
 
             try
             {
@@ -68,7 +68,7 @@ namespace Sealgram.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!LikesExists(id))
+                if (!CommentsExists(id))
                 {
                     return NotFound();
                 }
@@ -81,44 +81,44 @@ namespace Sealgram.Controllers
             return NoContent();
         }
 
-        // POST: api/Likes
+        // POST: api/Comments
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Likes>> PostLikes(Likes likes)
+        public async Task<ActionResult<Comments>> PostComments(Comments comments)
         {
-          if (_context.Likes == null)
+          if (_context.Comments == null)
           {
-              return Problem("Entity set 'SealgramDbContext.Likes'  is null.");
+              return Problem("Entity set 'SealgramDbContext.Comments'  is null.");
           }
-            _context.Likes.Add(likes);
+            _context.Comments.Add(comments);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetLikes", new { id = likes.likeid }, likes);
+            return CreatedAtAction("GetComments", new { id = comments.CommentId }, comments);
         }
 
-        // DELETE: api/Likes/5
+        // DELETE: api/Comments/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteLikes(int id)
+        public async Task<IActionResult> DeleteComments(int? id)
         {
-            if (_context.Likes == null)
+            if (_context.Comments == null)
             {
                 return NotFound();
             }
-            var likes = await _context.Likes.FindAsync(id);
-            if (likes == null)
+            var comments = await _context.Comments.FindAsync(id);
+            if (comments == null)
             {
                 return NotFound();
             }
 
-            _context.Likes.Remove(likes);
+            _context.Comments.Remove(comments);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool LikesExists(int id)
+        private bool CommentsExists(int? id)
         {
-            return (_context.Likes?.Any(e => e.likeid == id)).GetValueOrDefault();
+            return (_context.Comments?.Any(e => e.CommentId == id)).GetValueOrDefault();
         }
     }
 }

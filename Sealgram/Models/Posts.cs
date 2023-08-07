@@ -4,15 +4,15 @@ namespace Sealgram.Models
 {
     public class Post
     {
-        public int? PostId { get; set; } // primary key
+        public int? postid { get; set; } // primary key
 
-        public int? UserId { get; set; } // foreign key
-        public string? Title { get; set; }
+        public int? user_id { get; set; } // foreign key
+        public string? title { get; set; }
 
-        public string? Content { get; set; }
+        public string? content { get; set; }
 
-        public DateTime CreatedAt { get; set; }
+        public DateTime? createdat { get; set; }
 
-        public DateTime UpdatedAt { get; set; }
+        public DateTime? updatedat { get; set; }
     }
 }

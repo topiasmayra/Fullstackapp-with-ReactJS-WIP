@@ -55,7 +55,7 @@ namespace Sealgram.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(int id, User user)
         {
-            if (id != user.UserId)
+            if (id != user.user_id)
             {
                 return BadRequest();
             }
@@ -93,7 +93,7 @@ namespace Sealgram.Controllers
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUser", new { id = user.UserId }, user);
+            return CreatedAtAction("GetUser", new { id = user.user_id }, user);
         }
 
         // DELETE: api/Users/5
@@ -118,7 +118,7 @@ namespace Sealgram.Controllers
 
         private bool UserExists(int id)
         {
-            return (_context.Users?.Any(e => e.UserId == id)).GetValueOrDefault();
+            return (_context.Users?.Any(e => e.user_id == id)).GetValueOrDefault();
         }
     }
 }

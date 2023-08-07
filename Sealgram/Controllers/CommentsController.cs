@@ -55,7 +55,7 @@ namespace Sealgram.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutComments(int? id, Comments comments)
         {
-            if (id != comments.CommentId)
+            if (id != comments.comment_id)
             {
                 return BadRequest();
             }
@@ -93,7 +93,7 @@ namespace Sealgram.Controllers
             _context.Comments.Add(comments);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetComments", new { id = comments.CommentId }, comments);
+            return CreatedAtAction("GetComments", new { id = comments.comment_id }, comments);
         }
 
         // DELETE: api/Comments/5
@@ -118,7 +118,7 @@ namespace Sealgram.Controllers
 
         private bool CommentsExists(int? id)
         {
-            return (_context.Comments?.Any(e => e.CommentId == id)).GetValueOrDefault();
+            return (_context.Comments?.Any(e => e.comment_id == id)).GetValueOrDefault();
         }
     }
 }

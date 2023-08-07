@@ -5,7 +5,6 @@ namespace Sealgram.Data
 {
     public class SealgramDbContext : DbContext
     {
-        
         public SealgramDbContext(DbContextOptions<SealgramDbContext> options)
             : base(options)
         {
@@ -24,11 +23,11 @@ namespace Sealgram.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Likes>()
-                .HasKey(l => l.likeid);
+                .HasKey(l => l.LikeId);
             modelBuilder.Entity<Comments>()
-                .HasKey(l => l.comment_id);
+                .HasKey(l => l.CommentId);
             modelBuilder.Entity<Post>()
-                .HasKey(l => l.postid);
+                .HasKey(l => l.PostId);
 
 
         }

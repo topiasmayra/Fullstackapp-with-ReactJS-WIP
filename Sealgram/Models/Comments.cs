@@ -4,14 +4,18 @@ namespace Sealgram.Models
 {
     public class Comments
     {
-        public int? CommentId { get; set; } // primary key
-        public int? UserId { get; set; } // foreign key
+        public int? comment_id { get; set; } // primary key
+        public int? user_id { get; set; } // foreign key
 
-        public int PostId { get; set; } // foreign key
+        public int? comment_likes { get; set; } 
+        public string? comments { get; set; }
 
-        public string? Content { get; set; }
 
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
+        public int post_id { get; set; } // foreign key
+
+        public string? content { get; set; }
+
+        public DateTime? createdat { get; set; }
+        public DateTime? updatedat { get; set; }
     }
 }

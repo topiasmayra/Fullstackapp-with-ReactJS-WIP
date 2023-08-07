@@ -1,19 +1,21 @@
 ﻿using System; // Don't forget to import System namespace for data types.
+using System.ComponentModel.DataAnnotations;
 
 namespace Sealgram.Models
 {
     public class User
     {
-        public int UserId { get; set; } // primary key
+        
+        [Key] // This attribute marks the property as the primary key
+        public int user_id { get; set; }
+        public string? username { get; set; }
 
-        public string? Username { get; set; }
+        public string? email { get; set; }
 
-        public string? Email { get; set; }
+        public string? password { get; set; }
 
-        public string? Password { get; set; }
+        public DateTime? created_at { get; set; }
 
-        public DateTime CreatedAt { get; set; }
-
-        public DateTime UpdatedAt { get; set; }
+        public DateTime? updated_at { get; set; }
     }
 }

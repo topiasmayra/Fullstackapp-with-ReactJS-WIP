@@ -55,7 +55,7 @@ namespace Sealgram.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutPost(int? id, Post post)
         {
-            if (id != post.PostId)
+            if (id != post.postid)
             {
                 return BadRequest();
             }
@@ -93,7 +93,7 @@ namespace Sealgram.Controllers
             _context.Posts.Add(post);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetPost", new { id = post.PostId }, post);
+            return CreatedAtAction("GetPost", new { id = post.postid }, post);
         }
 
         // DELETE: api/Posts/5
@@ -118,7 +118,7 @@ namespace Sealgram.Controllers
 
         private bool PostExists(int? id)
         {
-            return (_context.Posts?.Any(e => e.PostId == id)).GetValueOrDefault();
+            return (_context.Posts?.Any(e => e.postid == id)).GetValueOrDefault();
         }
     }
 }
